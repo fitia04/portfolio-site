@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 
 // type: "image" | "video" | "embed"
@@ -142,16 +142,30 @@ function IPhoneMockup({ src, type, label, description }: { src: string | null; t
   );
 }
 
-const VISIBLE = 3;
-
 export default function Collaborations() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(3);
 
-  const max = Math.max(0, videos.length - VISIBLE);
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth < 640) setVisible(1);
+      else if (window.innerWidth < 1024) setVisible(2);
+      else setVisible(3);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const max = Math.max(0, videos.length - visible);
   const prev = () => setIndex((i) => Math.max(i - 1, 0));
   const next = () => setIndex((i) => Math.min(i + 1, max));
+
+  useEffect(() => {
+    setIndex((i) => Math.min(i, max));
+  }, [max]);
 
   return (
     <section
@@ -211,12 +225,12 @@ export default function Collaborations() {
           className="overflow-hidden"
         >
           <motion.div
-            className="flex gap-10 items-start"
-            animate={{ x: `calc(-${index * (100 / VISIBLE)}% - ${index * 40 / VISIBLE}px)` }}
+            className="flex gap-6 md:gap-10 items-start"
+            animate={{ x: `calc(-${index * (100 / visible)}% - ${index * (visible === 1 ? 24 : 40) / visible}px)` }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             {videos.map((video, i) => (
-              <div key={i} className="flex-none" style={{ width: `calc(${100 / VISIBLE}% - ${40 * (VISIBLE - 1) / VISIBLE}px)` }}>
+              <div key={i} className="flex-none" style={{ width: `calc(${100 / visible}% - ${(visible === 1 ? 24 : 40) * (visible - 1) / visible}px)` }}>
                 <IPhoneMockup src={video.src} type={video.type} label={video.label} description={"description" in video ? video.description : undefined} />
               </div>
             ))}

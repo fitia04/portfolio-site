@@ -17,6 +17,18 @@ export default function Hero() {
       {/* Decorative blob */}
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] bg-[#B5976B]" />
 
+      {/* Mobile: photo en fond avec overlay */}
+      <div className="absolute inset-0 lg:hidden">
+        <Image
+          src="/images/AE09339E-CD09-421C-BEEF-CBDFFE387B1B_1_105_c.jpeg"
+          alt="Fitia Travel"
+          fill
+          className="object-cover object-top"
+          priority
+        />
+        <div className="absolute inset-0 bg-[#F7F4EF]/80" />
+      </div>
+
       {/* Left: text */}
       <div className="relative z-10 flex flex-col justify-center items-center text-center px-8 md:pl-36 md:pr-4 py-32 w-full lg:w-1/2">
 
@@ -110,7 +122,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Right: full-height photo, no border-radius, bleeds to edge */}
+      {/* Desktop: photo à droite */}
       <motion.div
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
