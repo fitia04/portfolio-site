@@ -104,7 +104,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex gap-10 mt-14 justify-center"
+          className="flex gap-5 md:gap-10 mt-14 justify-center w-full"
         >
           {[
             { icon: <Instagram size={14} />, label: "Instagram", value: "3 400" },
@@ -112,7 +112,7 @@ export default function Hero() {
             { label: "📍", value: "France & Monde" },
           ].map((item, i) => (
             <div key={i} className="flex flex-col gap-1">
-              <span className="text-2xl font-bold text-[#1E2D24]">{item.value}</span>
+              <span className="text-lg md:text-2xl font-bold text-[#1E2D24]">{item.value}</span>
               <div className="flex items-center gap-1.5 text-[#5C6B5C]/60">
                 {item.icon}
                 <span className="text-xs tracking-wide">{item.label}</span>
