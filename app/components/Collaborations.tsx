@@ -44,6 +44,7 @@ const videos = [
 
 function IPhoneMockup({ src, type, label, description }: { src: string | null; type: "image" | "video" | "embed"; label: string; description?: string }) {
   const [muted, setMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -100,7 +101,15 @@ function IPhoneMockup({ src, type, label, description }: { src: string | null; t
           )}
           {src && type === "video" && (
             <div className="relative w-full h-full">
-              <video src={src} className="w-full h-full object-cover" autoPlay muted={muted} loop playsInline />
+              <video
+                ref={videoRef}
+                src={src}
+                className="w-full h-full object-cover"
+                muted={muted}
+                loop
+                playsInline
+                autoPlay
+              />
               <button
                 onClick={() => setMuted((m) => !m)}
                 className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm"
