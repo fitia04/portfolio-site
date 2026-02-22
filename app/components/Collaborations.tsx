@@ -222,7 +222,7 @@ export default function Collaborations() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="overflow-hidden"
+          className="overflow-hidden pt-4 -mt-4"
         >
           <motion.div
             className="flex gap-6 md:gap-10 items-start"
