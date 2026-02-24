@@ -86,7 +86,7 @@ export default function Contact() {
               {services.map((s) => (
                 <div
                   key={s.label}
-                  className="flex items-center gap-3 bg-white border border-[#DDD5C0] rounded-2xl px-4 py-3 text-sm text-[#1E2D24] font-medium"
+                  className="flex items-center gap-3 text-sm text-[#1E2D24] font-medium"
                 >
                   <span>{s.icon}</span>
                   {s.label}
