@@ -34,6 +34,34 @@ h1, h2, h3, h4 {
   color: white;
 }
 
+/* Phone input */
+.phone-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #DDD5C0;
+  border-radius: 0.75rem;
+  background-color: #F7F4EF;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  color: #1E2D24;
+  transition: border-color 0.2s;
+}
+.phone-input:focus-within {
+  border-color: #4A7C59;
+}
+.phone-input .PhoneInputCountry {
+  margin-right: 0.5rem;
+}
+.phone-input .PhoneInputInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.75rem 0;
+  width: 100%;
+  font-size: 0.875rem;
+  color: #1E2D24;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

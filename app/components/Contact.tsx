@@ -3,6 +3,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const services = [
   { icon: "📸", label: "Modèle photo" },
@@ -14,16 +16,28 @@ export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
     establishment: "",
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setSent(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -146,6 +160,19 @@ export default function Contact() {
 
               <div>
                 <label className="text-xs font-semibold text-[#1E2D24] uppercase tracking-wide mb-1.5 block">
+                  Téléphone <span className="text-[#5C6B5C] normal-case font-normal">(optionnel)</span>
+                </label>
+                <PhoneInput
+                  international
+                  defaultCountry="FR"
+                  value={form.phone}
+                  onChange={(value) => setForm({ ...form, phone: value ?? "" })}
+                  className="phone-input"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-[#1E2D24] uppercase tracking-wide mb-1.5 block">
                   Établissement / Marque
                 </label>
                 <input
@@ -178,10 +205,11 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full bg-[#4A7C59] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-[#3A6147] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                disabled={loading}
+                className="w-full bg-[#4A7C59] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-[#3A6147] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <Send size={18} />
-                Envoyer ma demande
+                {loading ? "Envoi en cours..." : "Envoyer ma demande"}
               </button>
 
               <p className="text-xs text-[#5C6B5C] text-center">
