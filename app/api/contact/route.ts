@@ -24,7 +24,8 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ success: false }, { status: 500 });
+  } catch (error) {
+    console.error("Resend error:", error);
+    return NextResponse.json({ success: false, error: String(error) }, { status: 500 });
   }
 }

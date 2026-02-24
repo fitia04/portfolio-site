@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import emailjs from "@emailjs/browser";
 
 const services = [
   { icon: "📸", label: "Modèle photo" },
@@ -29,11 +30,18 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      await emailjs.send(
+        "service_ohu5dcp",
+        "template_69ol5f4",
+        {
+          name: form.name,
+          email: form.email,
+          phone: form.phone || "Non renseigné",
+          establishment: form.establishment,
+          message: form.message,
+        },
+        "bk11PX1nTbAdA8gXB"
+      );
       setSent(true);
     } finally {
       setLoading(false);

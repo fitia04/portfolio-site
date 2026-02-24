@@ -94,7 +94,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-[#DDD5C0] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-[#5C6B5C]">
-            © 2025 Fitia Travel. Tous droits réservés.
+            © 2026 Fitia Travel. Tous droits réservés.
           </p>
           <p className="text-xs text-[#5C6B5C] italic">
             Créatrice de contenu food & voyages · Toulouse, France
