@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 
 const services = [
-  { icon: "📸", label: "Shooting photo" },
+  { icon: "📸", label: "Modèle photo" },
   { icon: "🎬", label: "Reels / TikTok" },
   { icon: "📣", label: "Stories sponsorisées" },
 ];

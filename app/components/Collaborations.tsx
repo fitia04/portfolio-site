@@ -156,6 +156,7 @@ export default function Collaborations() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(3);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -169,12 +170,18 @@ export default function Collaborations() {
   }, []);
 
   const max = Math.max(0, videos.length - visible);
-  const prev = () => setIndex((i) => Math.max(i - 1, 0));
-  const next = () => setIndex((i) => Math.min(i + 1, max));
+  const prev = () => setIndex((i) => (i <= 0 ? max : i - 1));
+  const next = () => setIndex((i) => (i >= max ? 0 : i + 1));
 
   useEffect(() => {
     setIndex((i) => Math.min(i, max));
   }, [max]);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(next, 3000);
+    return () => clearInterval(timer);
+  }, [paused, max]);
 
   return (
     <section
@@ -211,15 +218,13 @@ export default function Collaborations() {
           <div className="flex items-center gap-3">
             <button
               onClick={prev}
-              disabled={index === 0}
-              className="w-11 h-11 rounded-full border-2 border-[#DDD5C0] flex items-center justify-center text-[#5C6B5C] hover:border-[#4A7C59] hover:text-[#4A7C59] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-full bg-[#1E2D24] flex items-center justify-center text-white hover:bg-[#4A7C59] transition-all duration-200 shadow-md"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={next}
-              disabled={index >= max}
-              className="w-11 h-11 rounded-full border-2 border-[#DDD5C0] flex items-center justify-center text-[#5C6B5C] hover:border-[#4A7C59] hover:text-[#4A7C59] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-12 h-12 rounded-full bg-[#1E2D24] flex items-center justify-center text-white hover:bg-[#4A7C59] transition-all duration-200 shadow-md"
             >
               <ChevronRight size={20} />
             </button>
@@ -232,6 +237,8 @@ export default function Collaborations() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="overflow-hidden pt-4 -mt-4"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
           <motion.div
             className="flex gap-6 md:gap-10 items-start"
