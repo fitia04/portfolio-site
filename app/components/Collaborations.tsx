@@ -201,7 +201,7 @@ export default function Collaborations() {
         >
           <div>
             <span className="text-[#4A7C59] text-sm tracking-widest uppercase font-semibold">
-              Portfolio
+              Mon portfolio
             </span>
             <h2
               className="text-4xl md:text-5xl font-bold text-[#1E2D24] mt-3"
@@ -209,7 +209,7 @@ export default function Collaborations() {
             >
               Mes collaborations
             </h2>
-            <p className="text-[#5C6B5C] mt-3 max-w-md">
+            <p className="text-[#5C6B5C] mt-3 whitespace-nowrap">
               Des partenariats authentiques, pensés pour valoriser chaque établissement.
             </p>
           </div>
@@ -266,20 +266,6 @@ export default function Collaborations() {
           ))}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.7 }}
-          className="text-center mt-14"
-        >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 border-2 border-[#4A7C59] text-[#4A7C59] px-8 py-3.5 rounded-full font-semibold hover:bg-[#4A7C59] hover:text-white transition-all duration-300"
-          >
-            Votre établissement ici →
-          </a>
-        </motion.div>
 
       </div>
     </section>

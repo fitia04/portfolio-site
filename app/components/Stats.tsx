@@ -37,7 +37,7 @@ function StatCard({ icon, value, suffix, label, description, delay, inView }: St
       <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/15 mb-5 text-white">
         {icon}
       </div>
-      <div className="text-5xl font-bold mb-2" style={{ fontFamily: "var(--font-serif)" }}>
+      <div className="text-5xl font-bold mb-4" style={{ fontFamily: "var(--font-serif)" }}>
         <AnimatedNumber value={value} suffix={suffix} inView={inView} />
       </div>
       <p className="text-lg font-semibold mb-2">{label}</p>

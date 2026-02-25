@@ -1,4 +1,4 @@
-import { Instagram, Mail } from "lucide-react";
+import { Instagram, Mail, ArrowUp } from "lucide-react";
 
 const TikTokIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -21,6 +21,14 @@ const socials = [
 
 export default function Footer() {
   return (
+    <>
+    <a
+      href="#"
+      aria-label="Remonter en haut"
+      className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-[#1E2D24] flex items-center justify-center text-white hover:bg-[#4A7C59] transition-all duration-300 hover:-translate-y-1 shadow-lg"
+    >
+      <ArrowUp size={18} />
+    </a>
     <footer
       className="py-16 px-6 border-t border-[#DDD5C0]"
       style={{ backgroundColor: "#EDE8E0" }}
@@ -102,5 +110,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

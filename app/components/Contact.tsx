@@ -26,6 +26,8 @@ export default function Contact() {
     message: "",
   });
 
+  const isValid = form.name.trim() !== "" && form.email.trim() !== "" && form.establishment.trim() !== "" && form.message.trim() !== "";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -213,8 +215,8 @@ export default function Contact() {
 
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full bg-[#4A7C59] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-[#3A6147] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={loading || !isValid}
+                className="w-full bg-[#4A7C59] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-[#3A6147] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#4A7C59] disabled:hover:translate-y-0 disabled:shadow-none"
               >
                 <Send size={18} />
                 {loading ? "Envoi en cours..." : "Envoyer ma demande"}
