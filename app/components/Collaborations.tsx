@@ -160,9 +160,10 @@ export default function Collaborations() {
 
   useEffect(() => {
     const update = () => {
-      if (window.innerWidth < 640) setVisible(1);
-      else if (window.innerWidth < 1024) setVisible(2);
-      else setVisible(3);
+      const v =
+        window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+      setVisible(v);
+      setIndex((i) => Math.min(i, Math.max(0, videos.length - v)));
     };
     update();
     window.addEventListener("resize", update);
@@ -172,10 +173,6 @@ export default function Collaborations() {
   const max = Math.max(0, videos.length - visible);
   const prev = () => setIndex((i) => (i <= 0 ? max : i - 1));
   const next = () => setIndex((i) => (i >= max ? 0 : i + 1));
-
-  useEffect(() => {
-    setIndex((i) => Math.min(i, max));
-  }, [max]);
 
   useEffect(() => {
     if (paused) return;
