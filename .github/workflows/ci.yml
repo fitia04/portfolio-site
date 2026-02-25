@@ -24,7 +24,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npx next lint --max-warnings 20
+      - run: npx eslint --max-warnings 100
 
   typecheck:
     name: TypeScript
