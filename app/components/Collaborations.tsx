@@ -266,20 +266,6 @@ export default function Collaborations() {
           ))}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.7 }}
-          className="text-center mt-14"
-        >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 border-2 border-[#4A7C59] text-[#4A7C59] px-8 py-3.5 rounded-full font-semibold hover:bg-[#4A7C59] hover:text-white transition-all duration-300"
-          >
-            Votre établissement ici →
-          </a>
-        </motion.div>
 
       </div>
     </section>

@@ -102,15 +102,6 @@ export default function About() {
             ))}
           </div>
 
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.8 }}
-            className="inline-flex items-center gap-2 mt-10 bg-[#1E2D24] text-white px-7 py-3.5 rounded-full font-semibold hover:bg-[#4A7C59] transition-all duration-300"
-          >
-            Me contacter
-          </motion.a>
         </motion.div>
       </div>
     </section>

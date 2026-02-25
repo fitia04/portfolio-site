@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
 
 const links = [
   { href: "#about", label: "À propos" },
@@ -66,7 +66,8 @@ export default function Navbar() {
           href="#contact"
           className="hidden md:inline-flex items-center gap-2 bg-[#4A7C59] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#3A6147] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
         >
-          Travailler ensemble
+          <FileText size={14} />
+          Devis gratuit
         </a>
 
         {/* Mobile burger */}
@@ -106,7 +107,8 @@ export default function Navbar() {
                   onClick={() => setMenuOpen(false)}
                   className="inline-block bg-[#4A7C59] text-white px-5 py-2.5 rounded-full text-sm font-semibold"
                 >
-                  Travailler ensemble
+                  <FileText size={14} />
+          Devis gratuit
                 </a>
               </li>
             </ul>

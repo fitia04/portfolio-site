@@ -40,7 +40,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2.5 mb-12 mx-auto"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#B5976B]" />
-          <span className="text-xs tracking-[0.3em] uppercase text-[#5C6B5C] font-light">
+          <span className="text-base tracking-[0.25em] uppercase text-[#1E2D24] font-semibold">
             Food & Voyages Creator
           </span>
         </motion.div>
@@ -89,12 +89,6 @@ export default function Hero() {
               className="bg-[#4A7C59] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#3A6147] transition-all duration-300 hover:-translate-y-0.5"
             >
               Mes collaborations
-            </a>
-            <a
-              href="#contact"
-              className="border border-[#1E2D24]/20 text-[#1E2D24]/70 px-6 py-3 rounded-full text-sm font-semibold hover:border-[#1E2D24]/40 hover:text-[#1E2D24] transition-all duration-300"
-            >
-              Me contacter
             </a>
           </div>
         </motion.div>
