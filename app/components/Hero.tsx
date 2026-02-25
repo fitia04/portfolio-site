@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowDown, Instagram } from "lucide-react";
 
 const TikTokIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
   </svg>
 );
@@ -17,17 +17,6 @@ export default function Hero() {
       {/* Decorative blob */}
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] bg-[#B5976B]" />
 
-      {/* Mobile: photo en fond avec overlay */}
-      <div className="absolute inset-0 lg:hidden">
-        <Image
-          src="/images/AE09339E-CD09-421C-BEEF-CBDFFE387B1B_1_105_c.jpeg"
-          alt="Fitia Travel"
-          fill
-          className="object-cover object-top"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#F7F4EF]/80" />
-      </div>
 
       {/* Left: text */}
       <div className="relative z-10 flex flex-col justify-center items-center text-center px-8 md:pl-36 md:pr-4 py-32 w-full lg:w-1/2">
@@ -76,12 +65,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="max-w-sm flex flex-col items-center"
+          className="max-w-xl flex flex-col items-center"
         >
           <div className="w-10 h-px bg-[#B5976B] mb-6" />
-          <p className="text-sm text-[#5C6B5C] leading-relaxed mb-8 font-light">
-            Créatrice de contenu passionnée, je mets en lumière les adresses
-            d&apos;exception et les expériences culinaires qui méritent d&apos;être racontées.
+          <p className="text-sm text-[#1E2D24] leading-relaxed mb-8 font-medium">
+            Créatrice de contenu food & voyages basée à Toulouse, je révèle les adresses d&apos;exception et les expériences culinaires qui méritent d&apos;être vues, ressenties et partagées.
+            <br />
+            Bienvenue dans mon univers !
           </p>
           <div className="flex gap-3 flex-wrap justify-center">
             <a
@@ -101,7 +91,7 @@ export default function Hero() {
           className="flex gap-5 md:gap-10 mt-14 justify-center w-full"
         >
           {[
-            { icon: <Instagram size={14} />, label: "Instagram", value: "3 400" },
+            { icon: <Instagram size={18} />, label: "Instagram", value: "3 400" },
             { icon: <TikTokIcon />, label: "TikTok", value: "3 067" },
             { label: "📍", value: "France & Monde" },
           ].map((item, i) => (
@@ -135,15 +125,16 @@ export default function Hero() {
       </motion.div>
 
       {/* Scroll indicator */}
-      <motion.div
+      <motion.a
+        href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 8, 0] }}
         transition={{ duration: 2, delay: 1.4, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#1E2D24]/30 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#1E2D24]/30 flex flex-col items-center gap-2 hover:text-[#1E2D24]/60 transition-colors cursor-pointer"
       >
         <span className="text-xs tracking-widest uppercase">Découvrir</span>
         <ArrowDown size={14} />
-      </motion.div>
+      </motion.a>
     </section>
   );
 }
