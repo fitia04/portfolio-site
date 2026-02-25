@@ -201,7 +201,7 @@ export default function Collaborations() {
         >
           <div>
             <span className="text-[#4A7C59] text-sm tracking-widest uppercase font-semibold">
-              Portfolio
+              Mon portfolio
             </span>
             <h2
               className="text-4xl md:text-5xl font-bold text-[#1E2D24] mt-3"
@@ -209,7 +209,7 @@ export default function Collaborations() {
             >
               Mes collaborations
             </h2>
-            <p className="text-[#5C6B5C] mt-3 max-w-md">
+            <p className="text-[#5C6B5C] mt-3 whitespace-nowrap">
               Des partenariats authentiques, pensés pour valoriser chaque établissement.
             </p>
           </div>
