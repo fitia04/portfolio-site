@@ -66,23 +66,23 @@ export default function About() {
 
           <div className="space-y-4 text-[#5C6B5C] leading-relaxed">
             <p>
-              Hello&nbsp;! Moi c&apos;est Fitia — créatrice de contenu depuis 2 ans,
-              originaire de Madagascar et basée à Toulouse.
+              Hello&nbsp;! Moi c&apos;est Fitia — <strong>créatrice de contenu</strong> depuis 2 ans,
+              originaire de Madagascar et basée à <strong>Toulouse</strong>.
             </p>
             <p>
-              Je parcours la France et le monde entier pour dénicher les adresses
-              qui font vibrer les papilles et les yeux. Food, voyages, lifestyle —
+              Je parcours la <strong>France</strong> et le monde entier pour dénicher les <strong>adresses
+              qui font vibrer les papilles</strong> et les yeux. <strong>Food, voyages, lifestyle</strong> —
               mon univers se raconte en images et en émotions authentiques.
             </p>
             <p>
               Ma communauté engagée me suit pour des recommandations sincères et
               des découvertes insolites. J&apos;ai collaboré avec plusieurs
-              établissements&nbsp;: restaurants, instituts de beauté, boutiques de
-              créateurs, hôtels…
+              établissements&nbsp;: <strong>restaurants</strong>, instituts de beauté, <strong>boutiques de
+              créateurs</strong>, hôtels…
             </p>
             <p>
               Chaque collaboration est pensée sur-mesure pour mettre en valeur
-              votre identité et toucher une audience qualifiée et curieuse.
+              votre <strong>identité de marque</strong> et toucher une <strong>audience qualifiée</strong> et curieuse.
             </p>
           </div>
 

@@ -52,21 +52,21 @@ const stats = [
     value: 3400,
     suffix: "",
     label: "Abonnés Instagram",
-    description: "Communauté engagée, taux d'engagement moyen de 6,2%",
+    description: "Communauté engagée, taux d'engagement moyen de 1,6%",
   },
   {
     icon: <Users size={24} />,
     value: 3067,
     suffix: "",
     label: "Followers TikTok",
-    description: "Contenus courts viraux, reach moyen de 250K vues/mois",
+    description: "47,4K likes cumulés sur l'ensemble des publications",
   },
   {
     icon: <Heart size={24} />,
     value: 30,
     suffix: "+",
     label: "Collaborations",
-    description: "Restaurants, hôtels, marques food & lifestyle depuis 5 ans",
+    description: "Restaurants, hôtels, marques food & lifestyle",
   },
 ];
 

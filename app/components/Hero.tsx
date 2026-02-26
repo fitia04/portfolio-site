@@ -69,7 +69,7 @@ export default function Hero() {
         >
           <div className="w-10 h-px bg-[#B5976B] mb-6" />
           <p className="text-sm text-[#1E2D24] leading-relaxed mb-8 font-medium">
-            Créatrice de contenu food & voyages basée à Toulouse, je révèle les adresses d&apos;exception et les expériences culinaires qui méritent d&apos;être vues, ressenties et partagées.
+            <strong>Créatrice de contenu food & voyages</strong> basée à <strong>Toulouse</strong>, je révèle les <strong>adresses d&apos;exception</strong> et les <strong>expériences culinaires</strong> qui méritent d&apos;être vues, ressenties et partagées.
             <br />
             Bienvenue dans mon univers !
           </p>
