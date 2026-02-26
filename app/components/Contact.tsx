@@ -73,10 +73,14 @@ export default function Contact() {
             Votre établissement mérite
             <span className="text-[#4A7C59]"> d&apos;être raconté</span>
           </h2>
-          <p className="text-[#5C6B5C] leading-relaxed mb-8">
-            Je travaille avec des restaurants, hôtels, épiceries fines, marques
-            lifestyle et destinations touristiques. Chaque projet est conçu
-            sur-mesure pour coller à votre ADN et parler à votre futur client.
+          <p className="text-[#5C6B5C] leading-relaxed mb-4 text-justify">
+            Je crée du <strong>contenu authentique</strong> pour des <strong>restaurants, hôtels, épiceries fines</strong>, marques lifestyle, boutiques de créateurs et <strong>destinations touristiques</strong>. Voyager, découvrir, capturer : c&apos;est ce qui me fait vibrer au quotidien, et je mets cette passion au service de votre marque.
+          </p>
+          <p className="text-[#5C6B5C] leading-relaxed mb-4 text-justify">
+            Chaque projet est pour moi une occasion d&apos;explorer des <strong>adresses d&apos;exception</strong> et de laisser toute ma créativité parler de ce qui vous rend unique. Ma mission : refléter votre <strong>identité de marque</strong>, séduire de nouveaux clients et booster votre <strong>visibilité sur les réseaux sociaux</strong>.
+          </p>
+          <p className="text-[#5C6B5C] leading-relaxed mb-8 text-justify">
+            Vous avez un projet ? Parlons-en.
           </p>
 
           {/* Services */}
