@@ -120,7 +120,8 @@ const IATA_TO_COUNTRY: Record<string, { name: string; code: string }> = {
 
 // ── OAuth2 token cache ──────────────────────────────────────────────────────
 
-const AMADEUS_BASE = "https://api.amadeus.com";
+const AMADEUS_BASE =
+  process.env.AMADEUS_BASE_URL ?? "https://test.api.amadeus.com";
 
 let cachedToken: string | null = null;
 let tokenExpiresAt = 0;
@@ -305,105 +306,141 @@ function buildSkyscannerLink(
   return `https://www.skyscanner.fr/transport/vols/${originCity}/${destCity}?adultsv2=1`;
 }
 
+// ── Popular destinations fallback ────────────────────────────────────────────
+// Used when Flight Inspiration Search returns no data (e.g. Amadeus test env)
+
+const POPULAR_DESTINATIONS = [
+  "RAK", "LIS", "SVQ", "BCN", "NAP", "IST", "FCO", "OPO", "ATH",
+];
+
+function getNextWeekendDates(): { departure: string; returnDate: string } {
+  const now = new Date();
+  const daysUntilFriday = (5 - now.getDay() + 7) % 7 || 7;
+  const friday = new Date(now);
+  friday.setDate(now.getDate() + daysUntilFriday + 14); // 2 weeks ahead
+  const monday = new Date(friday);
+  monday.setDate(friday.getDate() + 3);
+
+  const fmt = (d: Date) => d.toISOString().slice(0, 10);
+  return { departure: fmt(friday), returnDate: fmt(monday) };
+}
+
+// ── Build a BonPlan from flight + hotel data ────────────────────────────────
+
+async function buildBonPlan(
+  origin: string,
+  iata: string,
+  departureDate: string,
+  returnDate: string,
+  inspirationPrice?: number,
+): Promise<BonPlan | null> {
+  const originCity = IATA_TO_CITY[origin] ?? "Paris";
+  const cityName = IATA_TO_CITY[iata] ?? iata;
+  const country = IATA_TO_COUNTRY[iata];
+  const countryName = country?.name ?? "Europe";
+  const countryCode = country?.code ?? "EU";
+  const nights = calculateNights(departureDate, returnDate);
+
+  // Get flight price
+  let flightPrice = inspirationPrice ?? 0;
+  try {
+    const flightOffers = await searchFlightOffers(
+      origin,
+      iata,
+      departureDate,
+      returnDate,
+    );
+    if (flightOffers.data && flightOffers.data.length > 0) {
+      flightPrice = parseFloat(flightOffers.data[0].price.grandTotal);
+    }
+  } catch {
+    if (!flightPrice) return null; // no price available at all
+  }
+
+  // Try hotel (best effort)
+  let hotelPricePerNight = 0;
+  let hotelStars = 3;
+  let hasHotel = false;
+
+  try {
+    const hotel = await searchHotels(iata, departureDate, returnDate);
+    if (hotel) {
+      hotelPricePerNight = hotel.pricePerNight;
+      hotelStars = hotel.stars;
+      hasHotel = true;
+    }
+  } catch {
+    // flight only
+  }
+
+  const totalPrice = Math.round(flightPrice + hotelPricePerNight * nights);
+  const originalPrice = Math.round((totalPrice * 1.5) / 10) * 10;
+
+  return {
+    destination: cityName,
+    country: countryName,
+    countryCode,
+    title: generateTitle(cityName),
+    description: generateDescription(cityName, originCity, nights, hotelStars),
+    price: totalPrice,
+    originalPrice,
+    category: hasHotel ? "Vol + Hôtel" : "Vol seul",
+    href: buildSkyscannerLink(origin, iata),
+    image: getDestinationImage(cityName),
+    departureCity: originCity,
+    nights,
+    hotelStars,
+  };
+}
+
 // ── Main orchestrator ───────────────────────────────────────────────────────
 
 export async function fetchBonsPlans(
   origin: string = "CDG",
 ): Promise<BonPlan[]> {
   try {
-    // 1. Get flight inspirations → top 9 destinations
-    const inspirations = await searchFlightInspirations(origin);
+    // 1. Try Flight Inspiration Search first
+    let inspirationData: FlightInspirationResult["data"] = [];
+    try {
+      const inspirations = await searchFlightInspirations(origin);
+      inspirationData = inspirations.data ?? [];
+    } catch {
+      // Inspiration search not available (common in test env)
+    }
 
-    if (!inspirations.data || inspirations.data.length === 0) {
+    const plans: BonPlan[] = [];
+
+    if (inspirationData.length > 0) {
+      // Path A: use inspiration data (production env)
+      const destinations = inspirationData.slice(0, 9);
+      const results = await Promise.all(
+        destinations.map((dest) =>
+          buildBonPlan(
+            origin,
+            dest.destination,
+            dest.departureDate,
+            dest.returnDate,
+            parseFloat(dest.price.total),
+          ),
+        ),
+      );
+      plans.push(...results.filter((p): p is BonPlan => p !== null));
+    } else {
+      // Path B: fallback to popular destinations with direct flight search
+      const { departure, returnDate } = getNextWeekendDates();
+      const results = await Promise.all(
+        POPULAR_DESTINATIONS.map((iata) =>
+          buildBonPlan(origin, iata, departure, returnDate),
+        ),
+      );
+      plans.push(...results.filter((p): p is BonPlan => p !== null));
+    }
+
+    if (plans.length === 0) {
       return FALLBACK_DEALS;
     }
 
-    const destinations = inspirations.data.slice(0, 9);
-    const originCity = IATA_TO_CITY[origin] ?? "Paris";
-
-    // 2. For each destination, fetch flight + hotel details
-    const plans = await Promise.all(
-      destinations.map(async (dest) => {
-        const iata = dest.destination;
-        const cityName = IATA_TO_CITY[iata] ?? iata;
-        const country = IATA_TO_COUNTRY[iata];
-        const countryName = country?.name ?? "Europe";
-        const countryCode = country?.code ?? "EU";
-        const nights = calculateNights(dest.departureDate, dest.returnDate);
-
-        // Get precise flight price
-        let flightPrice = parseFloat(dest.price.total);
-        try {
-          const flightOffers = await searchFlightOffers(
-            origin,
-            iata,
-            dest.departureDate,
-            dest.returnDate,
-          );
-          if (flightOffers.data && flightOffers.data.length > 0) {
-            flightPrice = parseFloat(flightOffers.data[0].price.grandTotal);
-          }
-        } catch {
-          // Use inspiration price as fallback
-        }
-
-        // Try to get hotel price (best effort)
-        let hotelPricePerNight = 0;
-        let hotelStars = 3;
-        let hasHotel = false;
-
-        try {
-          const hotel = await searchHotels(
-            iata,
-            dest.departureDate,
-            dest.returnDate,
-          );
-          if (hotel) {
-            hotelPricePerNight = hotel.pricePerNight;
-            hotelStars = hotel.stars;
-            hasHotel = true;
-          }
-        } catch {
-          // No hotel available — flight only
-        }
-
-        // Calculate total price
-        const totalPrice = Math.round(
-          flightPrice + hotelPricePerNight * nights,
-        );
-        const originalPrice = Math.round((totalPrice * 1.5) / 10) * 10;
-        const category = hasHotel ? "Vol + Hôtel" : "Vol seul";
-
-        const flag = countryFlag(countryCode);
-
-        const plan: BonPlan = {
-          destination: `${cityName} ${flag}`,
-          country: countryName,
-          countryCode,
-          title: generateTitle(cityName),
-          description: generateDescription(
-            cityName,
-            originCity,
-            nights,
-            hotelStars,
-          ),
-          price: totalPrice,
-          originalPrice,
-          category,
-          href: buildSkyscannerLink(origin, iata),
-          image: getDestinationImage(cityName),
-          departureCity: originCity,
-          nights,
-          hotelStars,
-        };
-
-        return plan;
-      }),
-    );
-
-    // 3. Sort by price ascending
     plans.sort((a, b) => a.price - b.price);
-
     return plans;
   } catch (error) {
     console.error("fetchBonsPlans error, returning fallback deals:", error);
