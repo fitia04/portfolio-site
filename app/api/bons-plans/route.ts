@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchBonsPlans } from "../../lib/amadeus";
+import { fetchBonsPlans } from "../../lib/kiwi";
 import { FALLBACK_DEALS } from "../../lib/bons-plans";
 
 export const revalidate = 21600; // 6h

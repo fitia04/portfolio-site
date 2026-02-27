@@ -1,4 +1,4 @@
-import { fetchBonsPlans } from "../lib/amadeus";
+import { fetchBonsPlans } from "../lib/kiwi";
 import BonsPlansPageClient from "./BonsPlansPageClient";
 
 export const revalidate = 21600; // 6h
