@@ -301,9 +301,7 @@ function buildSkyscannerLink(
   origin: string,
   destination: string,
 ): string {
-  const originCity = IATA_TO_CITY[origin]?.toLowerCase() ?? origin.toLowerCase();
-  const destCity = IATA_TO_CITY[destination]?.toLowerCase() ?? destination.toLowerCase();
-  return `https://www.skyscanner.fr/transport/vols/${originCity}/${destCity}?adultsv2=1`;
+  return `https://www.skyscanner.fr/transport/vols/${origin.toLowerCase()}/${destination.toLowerCase()}/`;
 }
 
 // ── Popular destinations fallback ────────────────────────────────────────────
