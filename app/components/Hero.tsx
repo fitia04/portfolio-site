@@ -115,7 +115,7 @@ export default function Hero() {
       >
         <div className="relative w-[420px] h-[580px] rounded-3xl overflow-hidden shadow-xl">
           <Image
-            src="/images/AE09339E-CD09-421C-BEEF-CBDFFE387B1B_1_105_c.jpeg"
+            src="/images/hero.webp"
             alt="Fitia Travel"
             fill
             className="object-cover object-center"
