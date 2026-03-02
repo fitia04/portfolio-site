@@ -4,11 +4,11 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const logos = [
-  { name: "La Friche Gourmande", src: "/images/logos/la-friche-gourmande.png" },
-  { name: "Herea Boutique", src: "/images/logos/herea-boutique.jpeg" },
+  { name: "La Friche Gourmande", src: "/images/logos/la-friche-gourmande.webp" },
+  { name: "Herea Boutique", src: "/images/logos/herea-boutique.webp" },
   { name: "NALA STUDIO", src: "/images/logos/nala-studio.svg" },
-  { name: "La Grande Pizzeria", src: "/images/logos/la-grande-pizzeria.png" },
-  { name: "Le Mékong", src: "/images/logos/le-mekong.png" },
+  { name: "La Grande Pizzeria", src: "/images/logos/la-grande-pizzeria.webp" },
+  { name: "Le Mékong", src: "/images/logos/le-mekong.webp" },
   { name: "YASSA BAR", src: "/images/logos/yassa-bar.svg", invert: true },
   { name: "YUJO Ramen", src: "/images/logos/yujo-ramen.svg" },
   { name: "Nachos", src: "/images/logos/nachos.webp" },

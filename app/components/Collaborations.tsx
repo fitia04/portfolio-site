@@ -11,31 +11,31 @@ import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 // Pour texte : type "text", src = null, title + description requis
 const videos = [
   {
-    src: "/videos/copy_977B2972-9D94-4C6F-B6AE-419B8A5167C3.mov",
+    src: "/videos/dart-gil-cafe.mp4",
     type: "video" as const,
     label: "Dart Gil café céramique",
     description: "Un atelier céramique dans un café super cozy à Toulouse — créativité et gourmandise se rencontrent dans le quartier des Carmes.",
   },
   {
-    src: "/videos/copy_C9A72DD4-DAA1-44B6-9F7E-1E3D1B90EBD6.mov",
+    src: "/videos/papilles-cocktails.mp4",
     type: "video" as const,
     label: "Papilles Cocktails",
     description: "Un atelier cocktails en petit groupe à deux pas du Capitole — shake, dégustation et bonne ambiance.",
   },
   {
-    src: "/videos/8f918fbbe91f4aa88e0e095fdcc8b5ec.mov",
+    src: "/videos/dubu-photobooth.mp4",
     type: "video" as const,
     label: "Dubu PhotoBooth",
     description: "Le premier photobooth coréen à Toulouse — trois machines uniques, accessoires et souvenirs à emporter.",
   },
   {
-    src: "/videos/copy_E97FFAD9-46C1-40B1-8F34-0CF1EED5A2DC.mov",
+    src: "/videos/la-friche-gourmande.mp4",
     type: "video" as const,
     label: "La Friche Gourmande",
     description: "Raclette et fondue dans de vraies télécabines — une guinguette transformée en station de ski au cœur de Toulouse.",
   },
   {
-    src: "/videos/a36c757da4584e3083be9d5e52cef11a.mov",
+    src: "/videos/herea-boutique.mp4",
     type: "video" as const,
     label: "Herea Boutique",
     description: "Une pépite toulousaine pleine de créations locales — bijoux, déco, ateliers créatifs et cadeaux faits main.",

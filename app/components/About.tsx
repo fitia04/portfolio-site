@@ -28,7 +28,7 @@ export default function About() {
         >
           <div className="w-full aspect-[3/4] rounded-3xl overflow-hidden relative shadow-2xl">
             <Image
-              src="/images/BF06CF7C-08E1-4AE3-A4B6-B08FF6538926_1_105_c.jpeg"
+              src="/images/about.webp"
               alt="Fitia Travel"
               fill
               className="object-cover"
