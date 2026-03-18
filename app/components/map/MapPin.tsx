@@ -30,8 +30,8 @@ export default function MapPin({ spot, onClick, isActive, delay = 0 }: MapPinPro
     <motion.button
       onClick={onClick}
       initial={{ scale: 0 }}
-      animate={{ scale: [0, 1.2, 1] }}
-      transition={{ type: "spring", damping: 12, stiffness: 200, delay }}
+      animate={{ scale: 1 }}
+      transition={{ type: "spring", damping: 8, stiffness: 200, delay }}
       whileHover={{ scale: isActive ? 1.1 : 1.15 }}
       className={`
         flex items-center justify-center rounded-full cursor-pointer select-none
