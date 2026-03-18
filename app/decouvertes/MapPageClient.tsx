@@ -4,7 +4,7 @@ import { useState, useRef, useMemo, useCallback } from "react";
 import Map, { Marker, Popup, type MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { ArrowLeft, Map as MapIcon, List } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import Supercluster from "supercluster";
 import type { BBox } from "geojson";
 import type { Spot } from "../types/spot";
@@ -84,13 +84,13 @@ export default function MapPageClient({ spots }: MapPageClientProps) {
     <div className="h-screen flex flex-col bg-[#F7F4EF]">
       {/* Header bar */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-[#DDD5C0] bg-[#F7F4EF]">
-        <a
+        <Link
           href="/"
           className="flex items-center gap-2 text-[#4A7C59] hover:text-[#3A6147] transition-colors text-sm font-medium"
         >
           <ArrowLeft size={16} />
           Retour
-        </a>
+        </Link>
         <h1
           className="text-xl font-bold text-[#1E2D24]"
           style={{ fontFamily: "var(--font-serif)" }}
