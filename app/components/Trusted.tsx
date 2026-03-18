@@ -4,9 +4,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const logos = [
-  { name: "La Friche Gourmande", src: "/images/logos/la-friche-gourmande.webp" },
+  { name: "La Friche Gourmande", src: "/images/logos/la-friche-gourmande.webp", invert: true },
   { name: "Herea Boutique", src: "/images/logos/herea-boutique.webp" },
-  { name: "NALA STUDIO", src: "/images/logos/nala-studio.svg" },
+  { name: "NALA STUDIO", src: "/images/logos/nala-studio.svg", invert: true },
   { name: "La Grande Pizzeria", src: "/images/logos/la-grande-pizzeria.webp" },
   { name: "Le Mékong", src: "/images/logos/le-mekong.webp" },
   { name: "YASSA BAR", src: "/images/logos/yassa-bar.svg", invert: true },
@@ -57,11 +57,11 @@ export default function Trusted() {
             transition={{ duration: 20, ease: "linear", repeat: Infinity }}
           >
             {track.map((logo, i) => (
-              <div key={i} className="flex-none flex items-center justify-center w-40 h-16 dark:bg-white/10 dark:rounded-2xl dark:px-4 dark:py-2 dark:backdrop-blur-sm">
+              <div key={i} className="flex-none flex items-center justify-center w-40 h-16">
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className={`max-h-full max-w-full object-contain dark:brightness-[1.8] dark:contrast-[0.9]${"invert" in logo && logo.invert ? " logo-invert" : ""}`}
+                  className={`max-h-full max-w-full object-contain${"invert" in logo && logo.invert ? " logo-invert" : ""}`}
                 />
               </div>
             ))}
