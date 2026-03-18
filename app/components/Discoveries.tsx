@@ -85,7 +85,7 @@ export default function Discoveries() {
     <section
       id="decouvertes"
       ref={ref}
-      className="py-24 md:py-32 px-6 bg-[#F7F4EF]"
+      className="py-24 md:py-32 px-6 bg-bg"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -95,16 +95,16 @@ export default function Discoveries() {
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
-          <span className="text-[#4A7C59] text-sm tracking-widest uppercase font-semibold">
+          <span className="text-primary text-sm tracking-widest uppercase font-semibold">
             Adresses & Destinations
           </span>
           <h2
-            className="text-4xl md:text-5xl font-bold text-[#1E2D24] mt-3 mb-5"
+            className="text-4xl md:text-5xl font-bold text-text mt-3 mb-5"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Mon guide toulousain
           </h2>
-          <p className="text-[#5C6B5C] max-w-xl mx-auto">
+          <p className="text-text-light max-w-xl mx-auto">
             Les adresses et destinations qui m&apos;ont fait vibrer récemment. Non
             sponsorisées, juste sincères.
           </p>
@@ -123,8 +123,8 @@ export default function Discoveries() {
               onClick={() => setActive(f)}
               className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 active === f
-                  ? "bg-[#4A7C59] text-white shadow-md"
-                  : "bg-[#DDD5C0] text-[#5C6B5C] hover:bg-[#4A7C59]/20"
+                  ? "bg-primary text-white shadow-md"
+                  : "bg-accent text-text-light hover:bg-primary/20"
               }`}
             >
               {f}
@@ -142,7 +142,7 @@ export default function Discoveries() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+              className="group bg-surface rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
             >
               {/* Gradient header */}
               <div
@@ -150,32 +150,32 @@ export default function Discoveries() {
                 style={{ background: item.gradient }}
               >
                 <span className="text-5xl filter drop-shadow-lg">{item.emoji}</span>
-                <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium capitalize">
+                <div className="absolute top-3 right-3 bg-surface/20 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium capitalize">
                   {item.type === "food" ? "🍽 Food" : "✈️ Voyage"}
                 </div>
               </div>
 
               {/* Content */}
               <div className="p-5">
-                <p className="text-xs text-[#4A7C59] font-semibold tracking-wide uppercase mb-1">
+                <p className="text-xs text-primary font-semibold tracking-wide uppercase mb-1">
                   {item.category}
                 </p>
                 <h3
-                  className="text-xl font-bold text-[#1E2D24] mb-1"
+                  className="text-xl font-bold text-text mb-1"
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {item.name}
                 </h3>
-                <p className="flex items-center gap-1 text-xs text-[#B5976B] mb-3 font-medium">
+                <p className="flex items-center gap-1 text-xs text-secondary mb-3 font-medium">
                   <MapPin size={12} />
                   {item.location}
                 </p>
-                <p className="text-sm text-[#5C6B5C] leading-relaxed">
+                <p className="text-sm text-text-light leading-relaxed">
                   {item.description}
                 </p>
 
-                <div className="flex items-center gap-1.5 mt-4 text-[#4A7C59] text-sm font-medium group-hover:gap-3 transition-all">
-                  <Heart size={14} className="fill-[#4A7C59]" />
+                <div className="flex items-center gap-1.5 mt-4 text-primary text-sm font-medium group-hover:gap-3 transition-all">
+                  <Heart size={14} className="fill-primary" />
                   Coup de cœur
                 </div>
               </div>

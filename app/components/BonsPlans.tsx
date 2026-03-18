@@ -84,7 +84,7 @@ export default function BonsPlans() {
   }, []);
 
   return (
-    <section ref={ref} id="bons-plans" className="py-24 md:py-28 px-6 bg-[#F7F4EF]">
+    <section ref={ref} id="bons-plans" className="py-24 md:py-28 px-6 bg-bg">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -94,16 +94,16 @@ export default function BonsPlans() {
           transition={{ duration: 0.7 }}
           className="mb-14"
         >
-          <span className="text-[#4A7C59] text-sm tracking-widest uppercase font-semibold">
+          <span className="text-primary text-sm tracking-widest uppercase font-semibold">
             Sélection du moment
           </span>
           <h2
-            className="text-4xl md:text-5xl font-bold text-[#1E2D24] mt-3"
+            className="text-4xl md:text-5xl font-bold text-text mt-3"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Bons plans voyages
           </h2>
-          <p className="text-[#5C6B5C] mt-4 max-w-xl">
+          <p className="text-text-light mt-4 max-w-xl">
             Des destinations accessibles depuis Toulouse, sélectionnées pour leur rapport qualité-prix.
           </p>
         </motion.div>
@@ -119,7 +119,7 @@ export default function BonsPlans() {
               initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-              className="group bg-white rounded-3xl overflow-hidden border border-[#DDD5C0] hover:shadow-lg transition-shadow duration-300 flex flex-col"
+              className="group bg-surface rounded-3xl overflow-hidden border border-accent hover:shadow-lg transition-shadow duration-300 flex flex-col"
             >
               {/* Photo */}
               <div className="relative h-44 overflow-hidden">
@@ -135,20 +135,20 @@ export default function BonsPlans() {
 
               {/* Content */}
               <div className="p-5 flex flex-col flex-1">
-                <p className="text-xs text-[#5C6B5C] mb-1">{deal.country}</p>
+                <p className="text-xs text-text-light mb-1">{deal.country}</p>
                 <h3
-                  className="text-lg font-bold text-[#1E2D24] mb-2"
+                  className="text-lg font-bold text-text mb-2"
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {deal.title}
                 </h3>
-                <p className="text-sm text-[#5C6B5C] leading-relaxed flex-1">
+                <p className="text-sm text-text-light leading-relaxed flex-1">
                   {deal.description}
                 </p>
 
                 {/* CTA */}
-                <div className="mt-5 pt-4 border-t border-[#EDE8E0]">
-                  <span className="flex items-center gap-1.5 text-xs font-semibold text-[#4A7C59] group-hover:gap-2.5 transition-all duration-200">
+                <div className="mt-5 pt-4 border-t border-bg-dark">
+                  <span className="flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:gap-2.5 transition-all duration-200">
                     Rechercher les vols <ExternalLink size={13} />
                   </span>
                 </div>

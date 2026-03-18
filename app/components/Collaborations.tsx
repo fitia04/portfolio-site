@@ -142,9 +142,9 @@ function IPhoneMockup({ src, type, label, description }: { src: string | null; t
 
       {/* Label + description below */}
       <div className="text-center max-w-[220px]">
-        <p className="text-sm font-semibold text-[#1E2D24] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>{label}</p>
+        <p className="text-sm font-semibold text-text leading-snug" style={{ fontFamily: "var(--font-serif)" }}>{label}</p>
         {description && (
-          <p className="text-xs text-[#5C6B5C] mt-1 leading-relaxed">{description}</p>
+          <p className="text-xs text-text-light mt-1 leading-relaxed">{description}</p>
         )}
       </div>
     </div>
@@ -184,8 +184,7 @@ export default function Collaborations() {
     <section
       id="collaborations"
       ref={ref}
-      className="py-24 md:py-32 px-6 overflow-hidden"
-      style={{ backgroundColor: "#EDE8E0" }}
+      className="py-24 md:py-32 px-6 overflow-hidden bg-bg-dark"
     >
       <div className="max-w-5xl mx-auto">
 
@@ -197,16 +196,16 @@ export default function Collaborations() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
         >
           <div>
-            <span className="text-[#4A7C59] text-sm tracking-widest uppercase font-semibold">
+            <span className="text-primary text-sm tracking-widest uppercase font-semibold">
               Mon portfolio
             </span>
             <h2
-              className="text-4xl md:text-5xl font-bold text-[#1E2D24] mt-3"
+              className="text-4xl md:text-5xl font-bold text-text mt-3"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Mes collaborations
             </h2>
-            <p className="text-[#5C6B5C] mt-3 whitespace-nowrap">
+            <p className="text-text-light mt-3 whitespace-nowrap">
               Des partenariats authentiques, pensés pour valoriser chaque établissement.
             </p>
           </div>
@@ -215,13 +214,13 @@ export default function Collaborations() {
           <div className="flex items-center gap-3">
             <button
               onClick={prev}
-              className="w-12 h-12 rounded-full bg-[#1E2D24] flex items-center justify-center text-white hover:bg-[#4A7C59] transition-all duration-200 shadow-md"
+              className="w-12 h-12 rounded-full bg-text flex items-center justify-center text-white hover:bg-primary transition-all duration-200 shadow-md"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={next}
-              className="w-12 h-12 rounded-full bg-[#1E2D24] flex items-center justify-center text-white hover:bg-[#4A7C59] transition-all duration-200 shadow-md"
+              className="w-12 h-12 rounded-full bg-text flex items-center justify-center text-white hover:bg-primary transition-all duration-200 shadow-md"
             >
               <ChevronRight size={20} />
             </button>
@@ -257,7 +256,7 @@ export default function Collaborations() {
               key={i}
               onClick={() => setIndex(i)}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === index ? "bg-[#4A7C59] w-6" : "bg-[#DDD5C0] w-1.5"
+                i === index ? "bg-primary w-6" : "bg-accent w-1.5"
               }`}
             />
           ))}

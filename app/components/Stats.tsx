@@ -84,8 +84,8 @@ export default function Stats() {
       }}
     >
       {/* Decorative blobs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#4A7C59]/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B5976B]/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="relative max-w-6xl mx-auto">
         {/* Header */}
@@ -95,7 +95,7 @@ export default function Stats() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-[#6BA882] text-sm tracking-widest uppercase font-semibold">
+          <span className="text-primary-light text-sm tracking-widest uppercase font-semibold">
             Audience & Impact
           </span>
           <h2

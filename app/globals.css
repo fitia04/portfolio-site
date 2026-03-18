@@ -11,12 +11,33 @@
   --color-text: #1E2D24;
   --color-text-light: #5C6B5C;
   --color-accent: #DDD5C0;
+  --color-surface: #FFFFFF;
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Lato", Arial, sans-serif;
 }
 
+/* Dark mode — DOIT rester APRÈS @theme pour que la spécificité CSS override les tokens */
+.dark {
+  --color-bg: #1A1612;
+  --color-bg-dark: #231E19;
+  --color-text: #E8E0D6;
+  --color-text-light: #9B8E80;
+  --color-primary: #6BA882;
+  --color-primary-dark: #4A7C59;
+  --color-primary-light: #3A6147;
+  --color-secondary: #D4A574;
+  --color-secondary-dark: #B5976B;
+  --color-accent: #2D2620;
+  --color-surface: #231E19;
+}
+
 html {
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
@@ -38,16 +59,16 @@ h1, h2, h3, h4 {
 .phone-input {
   display: flex;
   align-items: center;
-  border: 1px solid #DDD5C0;
+  border: 1px solid var(--color-accent);
   border-radius: 0.75rem;
-  background-color: #F7F4EF;
+  background-color: var(--color-bg);
   padding: 0 1rem;
   font-size: 0.875rem;
-  color: #1E2D24;
+  color: var(--color-text);
   transition: border-color 0.2s;
 }
 .phone-input:focus-within {
-  border-color: #4A7C59;
+  border-color: var(--color-primary);
 }
 .phone-input .PhoneInputCountry {
   margin-right: 0.5rem;
@@ -59,7 +80,15 @@ h1, h2, h3, h4 {
   padding: 0.75rem 0;
   width: 100%;
   font-size: 0.875rem;
-  color: #1E2D24;
+  color: var(--color-text);
+}
+
+/* Logo invert (ex: YASSA BAR) */
+.logo-invert {
+  filter: brightness(0);
+}
+.dark .logo-invert {
+  filter: brightness(0) invert(1);
 }
 
 /* Custom scrollbar */
@@ -72,4 +101,22 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary);
   border-radius: 3px;
+}
+
+/* Impression : forcer le light mode */
+@media print {
+  html.dark {
+    --color-bg: #F7F4EF;
+    --color-bg-dark: #EDE8E0;
+    --color-text: #1E2D24;
+    --color-text-light: #5C6B5C;
+    --color-primary: #4A7C59;
+    --color-primary-dark: #3A6147;
+    --color-primary-light: #6BA882;
+    --color-secondary: #B5976B;
+    --color-secondary-dark: #8F7450;
+    --color-accent: #DDD5C0;
+    --color-surface: #FFFFFF;
+    color-scheme: light;
+  }
 }
