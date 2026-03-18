@@ -4,9 +4,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const logos = [
-  { name: "La Friche Gourmande", src: "/images/logos/la-friche-gourmande.webp" },
+  { name: "La Friche Gourmande", src: "/images/logos/la-friche-gourmande.webp", invert: true },
   { name: "Herea Boutique", src: "/images/logos/herea-boutique.webp" },
-  { name: "NALA STUDIO", src: "/images/logos/nala-studio.svg" },
+  { name: "NALA STUDIO", src: "/images/logos/nala-studio.svg", invert: true },
   { name: "La Grande Pizzeria", src: "/images/logos/la-grande-pizzeria.webp" },
   { name: "Le Mékong", src: "/images/logos/le-mekong.webp" },
   { name: "YASSA BAR", src: "/images/logos/yassa-bar.svg", invert: true },
@@ -21,7 +21,7 @@ export default function Trusted() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="py-24 md:py-28 bg-white overflow-hidden">
+    <section ref={ref} className="py-24 md:py-28 bg-surface overflow-hidden">
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -31,7 +31,7 @@ export default function Trusted() {
           className="text-center mb-14"
         >
           <h2
-            className="text-4xl md:text-5xl font-bold text-[#1E2D24]"
+            className="text-4xl md:text-5xl font-bold text-text"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Ils m&apos;ont fait confiance
@@ -47,8 +47,8 @@ export default function Trusted() {
         className="relative"
       >
         {/* Fade edges */}
-        <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
 
         <div className="flex overflow-hidden">
           <motion.div
@@ -61,8 +61,7 @@ export default function Trusted() {
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="max-h-full max-w-full object-contain"
-                  style={"invert" in logo && logo.invert ? { filter: "brightness(0)" } : undefined}
+                  className={`max-h-full max-w-full object-contain${"invert" in logo && logo.invert ? " logo-invert" : ""}`}
                 />
               </div>
             ))}

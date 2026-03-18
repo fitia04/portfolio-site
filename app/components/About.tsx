@@ -17,7 +17,7 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" ref={ref} className="py-24 md:py-32 px-6 bg-[#F7F4EF]">
+    <section id="about" ref={ref} className="py-24 md:py-32 px-6 bg-bg">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         {/* Photo */}
         <motion.div
@@ -53,18 +53,18 @@ export default function About() {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="text-[#4A7C59] text-sm tracking-widest uppercase font-semibold">
+          <span className="text-primary text-sm tracking-widest uppercase font-semibold">
             À propos
           </span>
           <h2
-            className="text-4xl md:text-5xl font-bold text-[#1E2D24] mt-3 mb-6 leading-tight"
+            className="text-4xl md:text-5xl font-bold text-text mt-3 mb-6 leading-tight"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Passionnée par les saveurs
-            <span className="text-[#B5976B]"> & les horizons</span>
+            <span className="text-secondary"> & les horizons</span>
           </h2>
 
-          <div className="space-y-4 text-[#5C6B5C] leading-relaxed">
+          <div className="space-y-4 text-text-light leading-relaxed">
             <p>
               Hello&nbsp;! Moi c&apos;est Fitia — <strong>créatrice de contenu</strong> depuis 2 ans,
               originaire de Madagascar et basée à <strong>Toulouse</strong>.
@@ -94,9 +94,9 @@ export default function About() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4 + i * 0.1 }}
-                className="flex items-center gap-2 bg-[#DDD5C0] text-[#1E2D24] px-4 py-2 rounded-full text-sm font-medium"
+                className="flex items-center gap-2 bg-accent text-text px-4 py-2 rounded-full text-sm font-medium"
               >
-                <span className="text-[#4A7C59]">{badge.icon}</span>
+                <span className="text-primary">{badge.icon}</span>
                 {badge.label}
               </motion.div>
             ))}

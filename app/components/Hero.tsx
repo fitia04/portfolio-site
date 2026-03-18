@@ -12,10 +12,10 @@ const TikTokIcon = () => (
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex overflow-hidden bg-[#F7F4EF]">
+    <section className="relative min-h-screen flex overflow-hidden bg-bg">
 
       {/* Decorative blob */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] bg-[#B5976B]" />
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] bg-secondary dark:w-[300px] dark:h-[300px] dark:opacity-10 dark:blur-[80px]" />
 
 
       {/* Left: text */}
@@ -28,8 +28,8 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2.5 mb-12 mx-auto"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B5976B]" />
-          <span className="text-base tracking-[0.25em] uppercase text-[#1E2D24] font-semibold">
+          <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+          <span className="text-base tracking-[0.25em] uppercase text-text font-semibold">
             Food & Voyages Creator
           </span>
         </motion.div>
@@ -41,7 +41,7 @@ export default function Hero() {
               initial={{ y: "110%" }}
               animate={{ y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-3xl md:text-5xl lg:text-6xl font-light text-[#1E2D24]/40 tracking-tight leading-snug"
+              className="block text-3xl md:text-5xl lg:text-6xl font-light text-text/40 tracking-tight leading-snug"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Découvrons le monde
@@ -52,7 +52,7 @@ export default function Hero() {
               initial={{ y: "110%" }}
               animate={{ y: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-6xl md:text-9xl lg:text-[10rem] font-bold text-[#B5976B] leading-none tracking-tight"
+              className="block text-6xl md:text-9xl lg:text-[10rem] font-bold text-secondary leading-none tracking-tight"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               ensemble.
@@ -67,8 +67,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="max-w-xl flex flex-col items-center"
         >
-          <div className="w-10 h-px bg-[#B5976B] mb-6" />
-          <p className="text-sm text-[#1E2D24] leading-relaxed mb-8 font-medium">
+          <div className="w-10 h-px bg-secondary mb-6" />
+          <p className="text-sm text-text leading-relaxed mb-8 font-medium">
             <strong>Créatrice de contenu food & voyages</strong> basée à <strong>Toulouse</strong>, je révèle les <strong>adresses d&apos;exception</strong> et les <strong>expériences culinaires</strong> qui méritent d&apos;être vues, ressenties et partagées.
             <br />
             Bienvenue dans mon univers !
@@ -76,7 +76,7 @@ export default function Hero() {
           <div className="flex gap-3 flex-wrap justify-center">
             <a
               href="#collaborations"
-              className="bg-[#4A7C59] text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-[#3A6147] transition-all duration-300 hover:-translate-y-0.5"
+              className="bg-primary text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-primary-dark transition-all duration-300 hover:-translate-y-0.5"
             >
               Mes collaborations
             </a>
@@ -96,8 +96,8 @@ export default function Hero() {
             { label: "📍", value: "France & Monde" },
           ].map((item, i) => (
             <div key={i} className="flex flex-col gap-1">
-              <span className="text-lg md:text-2xl font-bold text-[#1E2D24]">{item.value}</span>
-              <div className="flex items-center gap-1.5 text-[#5C6B5C]/60">
+              <span className="text-lg md:text-2xl font-bold text-text">{item.value}</span>
+              <div className="flex items-center gap-1.5 text-text-light/60">
                 {item.icon}
                 <span className="text-xs tracking-wide">{item.label}</span>
               </div>
@@ -130,7 +130,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 8, 0] }}
         transition={{ duration: 2, delay: 1.4, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#1E2D24]/30 flex flex-col items-center gap-2 hover:text-[#1E2D24]/60 transition-colors cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-text/30 flex flex-col items-center gap-2 hover:text-text/60 transition-colors cursor-pointer"
       >
         <span className="text-xs tracking-widest uppercase">Découvrir</span>
         <ArrowDown size={14} />

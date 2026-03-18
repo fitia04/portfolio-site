@@ -25,28 +25,27 @@ export default function Footer() {
     <a
       href="#"
       aria-label="Remonter en haut"
-      className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-[#1E2D24] flex items-center justify-center text-white hover:bg-[#4A7C59] transition-all duration-300 hover:-translate-y-1 shadow-lg"
+      className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-text flex items-center justify-center text-white hover:bg-primary transition-all duration-300 hover:-translate-y-1 shadow-lg"
     >
       <ArrowUp size={18} />
     </a>
     <footer
-      className="py-16 px-6 border-t border-[#DDD5C0]"
-      style={{ backgroundColor: "#EDE8E0" }}
+      className="py-16 px-6 border-t border-accent bg-bg-dark"
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
           {/* Brand */}
           <div className="max-w-xs">
             <p
-              className="text-2xl font-bold text-[#1E2D24] mb-1"
+              className="text-2xl font-bold text-text mb-1"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Fitia Travel
             </p>
-            <p className="text-xs tracking-widest text-[#4A7C59] uppercase mb-4">
+            <p className="text-xs tracking-widest text-primary uppercase mb-4">
               Food & Voyages Creator
             </p>
-            <p className="text-sm text-[#5C6B5C] leading-relaxed">
+            <p className="text-sm text-text-light leading-relaxed">
               Je partage des adresses coups de coeur avec authenticité et
               passion.
             </p>
@@ -54,7 +53,7 @@ export default function Footer() {
 
           {/* Nav */}
           <div>
-            <p className="text-xs font-semibold text-[#1E2D24] uppercase tracking-widest mb-4">
+            <p className="text-xs font-semibold text-text uppercase tracking-widest mb-4">
               Navigation
             </p>
             <ul className="space-y-2">
@@ -62,7 +61,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-[#5C6B5C] hover:text-[#4A7C59] transition-colors"
+                    className="text-sm text-text-light hover:text-primary transition-colors"
                   >
                     {link.label}
                   </a>
@@ -73,7 +72,7 @@ export default function Footer() {
 
           {/* Social + contact */}
           <div>
-            <p className="text-xs font-semibold text-[#1E2D24] uppercase tracking-widest mb-4">
+            <p className="text-xs font-semibold text-text uppercase tracking-widest mb-4">
               Me retrouver
             </p>
             <div className="flex gap-3 mb-6">
@@ -84,7 +83,7 @@ export default function Footer() {
                   aria-label={s.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white border border-[#DDD5C0] flex items-center justify-center text-[#5C6B5C] hover:text-[#4A7C59] hover:border-[#4A7C59] transition-all duration-300"
+                  className="w-10 h-10 rounded-full bg-surface border border-accent flex items-center justify-center text-text-light hover:text-primary hover:border-primary transition-all duration-300"
                 >
                   {s.icon}
                 </a>
@@ -92,7 +91,7 @@ export default function Footer() {
             </div>
             <a
               href="mailto:fitiatravel@gmail.com"
-              className="text-sm text-[#4A7C59] font-medium hover:underline"
+              className="text-sm text-primary font-medium hover:underline"
             >
               fitiatravel@gmail.com
             </a>
@@ -100,11 +99,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#DDD5C0] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-[#5C6B5C]">
+        <div className="border-t border-accent pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-text-light">
             © 2026 Fitia Travel. Tous droits réservés.
           </p>
-          <p className="text-xs text-[#5C6B5C] italic">
+          <p className="text-xs text-text-light italic">
             Créatrice de contenu food & voyages · Toulouse, France
           </p>
         </div>
