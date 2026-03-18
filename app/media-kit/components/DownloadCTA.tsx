@@ -2,7 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
-import { Download, Mail, X, CheckCircle, Loader2 } from "lucide-react";
+import { Download, Mail, X, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 interface DownloadCTAProps {
@@ -14,14 +14,13 @@ interface DownloadCTAProps {
 export default function DownloadCTA({ showModal, onOpenModal, onCloseModal }: DownloadCTAProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleDownload = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleDownload = async () => {
     setLoading(true);
+    setError(false);
 
     try {
       const response = await fetch("/api/media-kit/pdf");
@@ -39,11 +38,9 @@ export default function DownloadCTA({ showModal, onOpenModal, onCloseModal }: Do
       setTimeout(() => {
         onCloseModal();
         setSuccess(false);
-        setEmail("");
-        setCompany("");
       }, 2000);
-    } catch (error) {
-      console.error("Download error:", error);
+    } catch {
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -104,6 +101,9 @@ export default function DownloadCTA({ showModal, onOpenModal, onCloseModal }: Do
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
             onClick={onCloseModal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="download-modal-title"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -130,6 +130,7 @@ export default function DownloadCTA({ showModal, onOpenModal, onCloseModal }: Do
                 <>
                   <div className="flex justify-between items-center mb-6">
                     <h3
+                      id="download-modal-title"
                       className="text-2xl font-bold text-[var(--color-text)]"
                       style={{ fontFamily: "var(--font-serif)" }}
                     >
@@ -144,48 +145,28 @@ export default function DownloadCTA({ showModal, onOpenModal, onCloseModal }: Do
                   </div>
 
                   <p className="text-[var(--color-text-light)] mb-6">
-                    Laissez vos coordonnées pour recevoir le media kit complet.
+                    Le PDF contient mes statistiques, mon audience et les formats de collaboration disponibles.
                   </p>
 
-                  <form onSubmit={handleDownload} className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-[var(--color-text)] mb-1">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="votre@email.com"
-                        className="w-full px-4 py-3 rounded-xl border border-[var(--color-accent)] bg-[var(--color-bg)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
-                      />
+                  {error && (
+                    <div className="flex items-center gap-2 mb-4 p-3 bg-red-50 text-red-700 rounded-xl text-sm">
+                      <AlertCircle size={16} />
+                      Une erreur est survenue. Veuillez réessayer.
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-[var(--color-text)] mb-1">
-                        Entreprise
-                      </label>
-                      <input
-                        type="text"
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
-                        placeholder="Nom de votre entreprise"
-                        className="w-full px-4 py-3 rounded-xl border border-[var(--color-accent)] bg-[var(--color-bg)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-primary)] text-white rounded-full font-semibold hover:bg-[var(--color-primary-dark)] transition-all duration-300 disabled:opacity-50"
-                    >
-                      {loading ? (
-                        <Loader2 size={20} className="animate-spin" />
-                      ) : (
-                        <Download size={20} />
-                      )}
-                      {loading ? "Génération en cours..." : "Télécharger le PDF"}
-                    </button>
-                  </form>
+                  )}
+
+                  <button
+                    onClick={handleDownload}
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-primary)] text-white rounded-full font-semibold hover:bg-[var(--color-primary-dark)] transition-all duration-300 disabled:opacity-50"
+                  >
+                    {loading ? (
+                      <Loader2 size={20} className="animate-spin" />
+                    ) : (
+                      <Download size={20} />
+                    )}
+                    {loading ? "Génération en cours..." : "Télécharger le PDF"}
+                  </button>
                 </>
               )}
             </motion.div>

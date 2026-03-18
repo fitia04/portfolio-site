@@ -1,4 +1,5 @@
 import { Instagram, Mail, ArrowUp } from "lucide-react";
+import Link from "next/link";
 
 const TikTokIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -7,11 +8,11 @@ const TikTokIcon = () => (
 );
 
 const navLinks = [
-  { href: "#about", label: "À propos" },
-  { href: "#collaborations", label: "Collaborations" },
-  { href: "#stats", label: "Chiffres clés" },
+  { href: "/#about", label: "À propos" },
+  { href: "/#collaborations", label: "Collaborations" },
+  { href: "/#stats", label: "Chiffres clés" },
   { href: "/media-kit", label: "Media Kit" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const socials = [
@@ -61,12 +62,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-[#5C6B5C] hover:text-[#4A7C59] transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
