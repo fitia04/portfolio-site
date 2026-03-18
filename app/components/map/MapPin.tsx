@@ -15,9 +15,10 @@ interface MapPinProps {
   spot: Spot;
   onClick: () => void;
   isActive: boolean;
+  delay?: number;
 }
 
-export default function MapPin({ spot, onClick, isActive }: MapPinProps) {
+export default function MapPin({ spot, onClick, isActive, delay = 0 }: MapPinProps) {
   const isGradient = spot.category === "food-voyage";
   const color = getCategoryColor(spot.category);
 
@@ -30,7 +31,7 @@ export default function MapPin({ spot, onClick, isActive }: MapPinProps) {
       onClick={onClick}
       initial={{ scale: 0 }}
       animate={{ scale: [0, 1.2, 1] }}
-      transition={{ type: "spring", damping: 12, stiffness: 200 }}
+      transition={{ type: "spring", damping: 12, stiffness: 200, delay }}
       whileHover={{ scale: isActive ? 1.1 : 1.15 }}
       className={`
         flex items-center justify-center rounded-full cursor-pointer select-none

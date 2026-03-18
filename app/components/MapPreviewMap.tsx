@@ -19,7 +19,7 @@ export default function MapPreviewMap() {
       style={{ width: "100%", height: "100%" }}
       attributionControl={false}
     >
-      {featuredSpots.map((spot) => (
+      {featuredSpots.map((spot, i) => (
         <Marker
           key={spot.id}
           longitude={spot.longitude}
@@ -44,6 +44,7 @@ export default function MapPreviewMap() {
               spot={spot}
               onClick={() => {}}
               isActive={hoveredId === spot.id}
+              delay={i * 0.15}
             />
           </div>
         </Marker>
