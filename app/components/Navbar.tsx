@@ -6,6 +6,7 @@ import { Menu, X, FileText } from "lucide-react";
 
 const links = [
   { href: "#about", label: "À propos" },
+  { href: "#decouvertes", label: "Découvertes" },
   { href: "#collaborations", label: "Collaborations" },
   { href: "#stats", label: "Chiffres" },
   { href: "#contact", label: "Contact" },

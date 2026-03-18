@@ -73,3 +73,17 @@ h1, h2, h3, h4 {
   background: var(--color-primary);
   border-radius: 3px;
 }
+
+/* MapLibre overrides */
+.maplibregl-popup-content {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.maplibregl-popup-tip {
+  display: none !important;
+}
+.maplibregl-ctrl-attrib {
+  font-size: 10px !important;
+  opacity: 0.6;
+}
