@@ -57,11 +57,11 @@ export default function Trusted() {
             transition={{ duration: 20, ease: "linear", repeat: Infinity }}
           >
             {track.map((logo, i) => (
-              <div key={i} className="flex-none flex items-center justify-center w-40 h-16">
+              <div key={i} className="flex-none flex items-center justify-center w-40 h-16 dark:bg-white/10 dark:rounded-2xl dark:px-4 dark:py-2 dark:backdrop-blur-sm">
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className={`max-h-full max-w-full object-contain${"invert" in logo && logo.invert ? " logo-invert" : ""}`}
+                  className={`max-h-full max-w-full object-contain dark:brightness-[1.8] dark:contrast-[0.9]${"invert" in logo && logo.invert ? " logo-invert" : ""}`}
                 />
               </div>
             ))}
