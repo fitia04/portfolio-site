@@ -3,23 +3,54 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, FileText } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { href: "#about", label: "À propos" },
   { href: "#collaborations", label: "Collaborations" },
   { href: "#stats", label: "Chiffres" },
+  { href: "/media-kit", label: "Media Kit" },
   { href: "#contact", label: "Contact" },
 ];
+
+function NavLink({ href, className, onClick, children }: {
+  href: string;
+  className: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const isAnchor = href.startsWith("#");
+  const resolvedHref = isAnchor && pathname !== "/" ? `/${href}` : href;
+
+  if (!isAnchor) {
+    return (
+      <Link href={resolvedHref} className={className} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={resolvedHref} className={className} onClick={onClick}>
+      {children}
+    </a>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const contactHref = pathname !== "/" ? "/#contact" : "#contact";
 
   return (
     <motion.nav
@@ -34,7 +65,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex flex-col leading-tight">
+        <Link href="/" className="flex flex-col leading-tight">
           <span
             className="text-2xl font-bold text-[#1E2D24]"
             style={{ fontFamily: "var(--font-serif)" }}
@@ -44,31 +75,31 @@ export default function Navbar() {
           <span className="text-xs tracking-[0.2em] text-[#4A7C59] uppercase font-light">
             Food & Voyages
           </span>
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
           {links.map((link) => (
             <li key={link.href}>
-              <a
+              <NavLink
                 href={link.href}
                 className="text-[#5C6B5C] hover:text-[#4A7C59] transition-colors duration-300 text-sm tracking-wide font-medium relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#4A7C59] transition-all duration-300 group-hover:w-full" />
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
 
         {/* CTA button */}
-        <a
-          href="#contact"
+        <Link
+          href={contactHref}
           className="hidden md:inline-flex items-center gap-2 bg-[#4A7C59] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#3A6147] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
         >
           <FileText size={14} />
           Devis gratuit
-        </a>
+        </Link>
 
         {/* Mobile burger */}
         <button
@@ -92,24 +123,24 @@ export default function Navbar() {
             <ul className="flex flex-col gap-4 pt-4">
               {links.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <NavLink
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
                     className="text-[#1E2D24] hover:text-[#4A7C59] transition-colors font-medium"
                   >
                     {link.label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
               <li>
-                <a
-                  href="#contact"
+                <Link
+                  href={contactHref}
                   onClick={() => setMenuOpen(false)}
                   className="inline-block bg-[#4A7C59] text-white px-5 py-2.5 rounded-full text-sm font-semibold"
                 >
                   <FileText size={14} />
-          Devis gratuit
-                </a>
+                  Devis gratuit
+                </Link>
               </li>
             </ul>
           </motion.div>
