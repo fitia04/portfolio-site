@@ -35,7 +35,8 @@ export default function MapPageClient({ spots }: MapPageClientProps) {
       const matchesCategory =
         category === "all" ||
         spot.category === category ||
-        spot.category === "food-voyage";
+        (spot.category === "food-voyage" &&
+          (category === "food" || category === "voyage"));
       // Search filter: case insensitive on name, city, country
       const matchesSearch =
         !searchQuery ||

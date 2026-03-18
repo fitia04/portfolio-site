@@ -65,7 +65,7 @@ export const spots: Spot[] = [
     shortDescription: "Petite tasca familiale sur les quais de Belém",
     description:
       "Une salle minuscule de huit tables où le patron sert le bacalhau à brás de sa mère depuis vingt ans, accompagné d'un vinho verde glacé. La vue sur le Tejo depuis la terrasse au coucher du soleil est à couper le souffle. Réservation indispensable.",
-    category: "food-voyage",
+    category: "voyage",
     latitude: 38.7223,
     longitude: -9.1393,
     city: "Lisbonne",
@@ -122,7 +122,7 @@ export const spots: Spot[] = [
     shortDescription: "Warung familial avec vue sur les rizières d'Ubud",
     description:
       "Accroché au flanc d'une colline d'Ubud, ce warung sans prétention sert un nasi campur maison composé de sept petits plats autour du riz. La vue sur les rizières en terrasses est hypnotique, surtout au lever du soleil. Une halte incontournable avant d'explorer les temples alentour.",
-    category: "food-voyage",
+    category: "voyage",
     latitude: -8.3405,
     longitude: 115.092,
     city: "Bali",
@@ -167,6 +167,7 @@ export const spots: Spot[] = [
     country: "Corée du Sud",
     imageUrl:
       "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&h=300&fit=crop",
+    rating: 4,
     emoji: "🥟",
     isFeatured: true,
     createdAt: "2025-03-05",

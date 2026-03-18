@@ -30,6 +30,7 @@ export default function MapPreviewMap() {
             className="relative"
             onMouseEnter={() => setHoveredId(spot.id)}
             onMouseLeave={() => setHoveredId(null)}
+            aria-hidden="true"
           >
             {hoveredId === spot.id && (
               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-10 pointer-events-none">
