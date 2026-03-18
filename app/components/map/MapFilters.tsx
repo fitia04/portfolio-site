@@ -42,6 +42,7 @@ export default function MapFilters({
         <Search size={16} className="text-[#5C6B5C]" />
         <input
           type="text"
+          aria-label="Rechercher un lieu"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Rechercher un lieu..."
