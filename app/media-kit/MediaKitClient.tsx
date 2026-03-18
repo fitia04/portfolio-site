@@ -4,6 +4,8 @@ import { useState } from "react";
 import MediaKitHero from "./components/MediaKitHero";
 import StatsOverview from "./components/StatsOverview";
 import AudienceSection from "./components/AudienceSection";
+import CollabHistory from "./components/CollabHistory";
+import ServicesGrid from "./components/ServicesGrid";
 
 export default function MediaKitClient() {
   const [showDownloadModal, setShowDownloadModal] = useState(false);
@@ -17,6 +19,8 @@ export default function MediaKitClient() {
       <MediaKitHero onDownloadClick={handleDownloadClick} />
       <StatsOverview />
       <AudienceSection />
+      <CollabHistory />
+      <ServicesGrid />
     </main>
   );
 }
