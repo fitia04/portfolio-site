@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import MediaKitClient from "./MediaKitClient";
 
 export const metadata: Metadata = {
@@ -13,5 +15,11 @@ export const metadata: Metadata = {
 };
 
 export default function MediaKitPage() {
-  return <MediaKitClient />;
+  return (
+    <>
+      <Navbar />
+      <MediaKitClient />
+      <Footer />
+    </>
+  );
 }

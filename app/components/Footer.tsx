@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#about", label: "À propos" },
   { href: "#collaborations", label: "Collaborations" },
   { href: "#stats", label: "Chiffres clés" },
+  { href: "/media-kit", label: "Media Kit" },
   { href: "#contact", label: "Contact" },
 ];
 
