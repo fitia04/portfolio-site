@@ -3,6 +3,7 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { Download, Mail, X, CheckCircle, Loader2 } from "lucide-react";
+import Link from "next/link";
 
 interface DownloadCTAProps {
   showModal: boolean;
@@ -83,13 +84,13 @@ export default function DownloadCTA({ showModal, onOpenModal, onCloseModal }: Do
               <Download size={20} />
               Télécharger le Media Kit PDF
             </button>
-            <a
+            <Link
               href="/#contact"
               className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
             >
               <Mail size={20} />
               Me contacter
-            </a>
+            </Link>
           </div>
         </motion.div>
       </section>
