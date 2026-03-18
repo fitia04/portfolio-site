@@ -15,7 +15,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex overflow-hidden bg-bg">
 
       {/* Decorative blob */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] bg-secondary" />
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full opacity-20 blur-[120px] bg-secondary dark:w-[300px] dark:h-[300px] dark:opacity-10 dark:blur-[80px]" />
 
 
       {/* Left: text */}
