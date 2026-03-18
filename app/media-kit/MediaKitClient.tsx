@@ -3,6 +3,7 @@
 import { useState } from "react";
 import MediaKitHero from "./components/MediaKitHero";
 import StatsOverview from "./components/StatsOverview";
+import AudienceSection from "./components/AudienceSection";
 
 export default function MediaKitClient() {
   const [showDownloadModal, setShowDownloadModal] = useState(false);
@@ -15,6 +16,7 @@ export default function MediaKitClient() {
     <main className="min-h-screen bg-[var(--color-bg)]">
       <MediaKitHero onDownloadClick={handleDownloadClick} />
       <StatsOverview />
+      <AudienceSection />
     </main>
   );
 }
