@@ -18,17 +18,17 @@
 
 /* Dark mode — DOIT rester APRÈS @theme pour que la spécificité CSS override les tokens */
 .dark {
-  --color-bg: #141414;
-  --color-bg-dark: #1C1B1A;
-  --color-text: #E8E0D6;
-  --color-text-light: #9B8E80;
+  --color-bg: #121212;
+  --color-bg-dark: #1A1A1A;
+  --color-text: #E4E4E4;
+  --color-text-light: #9A9A9A;
   --color-primary: #6BA882;
   --color-primary-dark: #4A7C59;
   --color-primary-light: #3A6147;
   --color-secondary: #D4A574;
   --color-secondary-dark: #B5976B;
-  --color-accent: #2A2928;
-  --color-surface: #1C1B1A;
+  --color-accent: #2A2A2A;
+  --color-surface: #1A1A1A;
 }
 
 html {
