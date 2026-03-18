@@ -5,6 +5,8 @@ import Map, { Marker, Popup, type MapRef } from "react-map-gl/maplibre";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { ArrowLeft, Map as MapIcon, List } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Supercluster from "supercluster";
+import type { BBox } from "geojson";
 import type { Spot } from "../types/spot";
 import MapPin from "../components/map/MapPin";
 import SpotPopup from "../components/map/SpotPopup";
@@ -21,6 +23,11 @@ export default function MapPageClient({ spots }: MapPageClientProps) {
   const [category, setCategory] = useState<"all" | "food" | "voyage">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [showMap, setShowMap] = useState(false); // mobile toggle, false = show list
+  const [viewport, setViewport] = useState({
+    longitude: 15,
+    latitude: 30,
+    zoom: 2,
+  });
 
   const filteredSpots = useMemo(() => {
     return spots.filter((spot) => {
@@ -38,6 +45,30 @@ export default function MapPageClient({ spots }: MapPageClientProps) {
       return matchesCategory && matchesSearch;
     });
   }, [spots, category, searchQuery]);
+
+  const points = useMemo(
+    () =>
+      filteredSpots.map((spot) => ({
+        type: "Feature" as const,
+        properties: { spot },
+        geometry: {
+          type: "Point" as const,
+          coordinates: [spot.longitude, spot.latitude],
+        },
+      })),
+    [filteredSpots]
+  );
+
+  const supercluster = useMemo(() => {
+    const sc = new Supercluster({ radius: 75, maxZoom: 14 });
+    sc.load(points);
+    return sc;
+  }, [points]);
+
+  const clusters = useMemo(() => {
+    const bounds: BBox = [-180, -85, 180, 85];
+    return supercluster.getClusters(bounds, Math.floor(viewport.zoom));
+  }, [supercluster, viewport.zoom]);
 
   const flyToSpot = useCallback((spot: Spot) => {
     setActiveSpot(spot);
@@ -137,23 +168,40 @@ export default function MapPageClient({ spots }: MapPageClientProps) {
           <Map
             ref={mapRef}
             mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
-            initialViewState={{ longitude: 15, latitude: 30, zoom: 2 }}
+            initialViewState={viewport}
             style={{ width: "100%", height: "100%" }}
+            onMove={(evt) => setViewport(evt.viewState)}
           >
-            {filteredSpots.map((spot) => (
-              <Marker
-                key={spot.id}
-                longitude={spot.longitude}
-                latitude={spot.latitude}
-                anchor="center"
-              >
-                <MapPin
-                  spot={spot}
-                  onClick={() => flyToSpot(spot)}
-                  isActive={activeSpot?.id === spot.id}
-                />
-              </Marker>
-            ))}
+            {clusters.map((cluster) => {
+              const [lng, lat] = cluster.geometry.coordinates;
+              const isCluster = cluster.properties.cluster;
+
+              if (isCluster) {
+                const count = cluster.properties.point_count;
+                const size = Math.min(40 + (count / filteredSpots.length) * 30, 70);
+                return (
+                  <Marker key={`cluster-${cluster.id}`} longitude={lng} latitude={lat} anchor="center">
+                    <div
+                      className="rounded-full bg-[#4A7C59] text-white flex items-center justify-center font-bold text-sm cursor-pointer shadow-lg border-2 border-white hover:scale-110 transition-transform"
+                      style={{ width: size, height: size }}
+                      onClick={() => {
+                        const zoom = supercluster.getClusterExpansionZoom(cluster.id as number);
+                        mapRef.current?.flyTo({ center: [lng, lat], zoom, duration: 500 });
+                      }}
+                    >
+                      {count}
+                    </div>
+                  </Marker>
+                );
+              }
+
+              const spot = cluster.properties.spot as Spot;
+              return (
+                <Marker key={spot.id} longitude={lng} latitude={lat} anchor="center">
+                  <MapPin spot={spot} onClick={() => flyToSpot(spot)} isActive={activeSpot?.id === spot.id} />
+                </Marker>
+              );
+            })}
             {activeSpot && (
               <Popup
                 longitude={activeSpot.longitude}
